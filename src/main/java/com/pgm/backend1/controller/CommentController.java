@@ -13,11 +13,11 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Log4j2
-@RequestMapping("/comments")
+@RequestMapping("/comments") ///comments 다음에 boardid 넣어야 함
 public class CommentController {
     private final CommentService commentService;
 
-    @PostMapping("/{boardId}")
+    @PostMapping("/{boardId}") //postmapping 자체가 create를 의미
     public ResponseEntity<Long> addComment(@PathVariable("boardId") Long boardId,
                                         @RequestBody CommentDTO commentDTO) {
         Comment comment=commentService.saveComment(boardId, commentDTO);
@@ -25,7 +25,7 @@ public class CommentController {
     }
     @GetMapping("/{boardId}")
     public ResponseEntity<List<Comment>> getComments(@PathVariable("boardId") Long boardId) {
-        return ResponseEntity.ok(commentService.getComments(boardId));
+        return ResponseEntity.ok(commentService.getComments(boardId)); //comment랑 게시물 아이디만 보내면 됨
     }
     @GetMapping("/one/{id}")
     public ResponseEntity<Comment> getComment(@PathVariable("id") Long id) {

@@ -29,7 +29,7 @@ public class CommentServiceImpl implements CommentService{
             Comment parent = commentRepository.findById(commentDTO.getParentId()).orElseThrow();
             comment.setParent(parent);
         }
-        board.setCommentCount(board.getCommentCount() + 1);
+      //  board.setCommentCount(board.getCommentCount() + 1); postman 오류나서 이거 주석처리함. getCommentCount여기에 null 리턴
         return commentRepository.save(comment);
     }
 
